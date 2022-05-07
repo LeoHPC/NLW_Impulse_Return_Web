@@ -1,7 +1,7 @@
+import html2canvas from 'html2canvas';
+import { Camera, Trash } from "phosphor-react";
 import { useState } from "react";
 
-import { Camera, Trash } from "phosphor-react";
-import html2canvas from 'html2canvas';
 import { Loading } from "../Loading";
 
 interface ScreenshotButtonProps {
@@ -44,9 +44,9 @@ export function ScreenshotButton({ screenshot, onScreenshotTook }: ScreenshotBut
     <button
       type="button"
       onClick={handleTakeScreenshot}
-      className="p-2 bg-zinc-800 rounded-md border-transparent hover:bg-zinc-700
+      className="p-2 bg-zinc-300 dark:bg-zinc-800 rounded-md border-transparent hover:bg-zinc-400 dark:hover:bg-zinc-700
               transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2
-              focus:ring-offset-zinc-900 focus:ring-brand-500"
+              focus:ring-offset-zinc-900 focus:ring-brand-500 text-zinc-800 dark:text-zinc-100"
     >
       {
         isTakingScreenshot ?

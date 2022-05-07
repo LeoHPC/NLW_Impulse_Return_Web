@@ -45,13 +45,13 @@ export function FeedbackContentStep({
 
         <button
           type="button"
-          className="top-5 left-5 absolute text-zinc-400 hover:text-zinc-100"
+          className="top-5 left-5 absolute text-zinc-800 dark:text-zinc-400 hover:text-zinc-100"
           onClick={onFeedbackRestartRequested}
         >
           <ArrowLeft weight="bold" className="h-4 w-4" />
         </button>
 
-        <span className="text-xl leading-6 flex items-center gap-2">
+        <span className="text-xl leading-6 flex items-center gap-2 text-zinc-800 dark:text-zinc-200">
           <img
             src={feedbackTypeInfo.image.source}
             alt={feedbackTypeInfo.image.alt}
@@ -68,12 +68,16 @@ export function FeedbackContentStep({
         className="my-4 w-full"
       >
         <textarea
-          className="min-w-[304px] w-full min-h-[112px] text-sm placeholder-zinc-400 
-                  text-zinc-100 border-zinc-600 bg-transparent rounded-md 
+          className="min-w-[304px] w-full min-h-[112px] text-sm placeholder-zinc-700 
+                  dark:placeholder-zinc-400 text-zinc-800
+                  dark:text-zinc-100 border-zinc-600 bg-transparent rounded-md 
                   focus:border-brand-500 focus:ring-brand-500 focus:ring-1 
                   focus:outline-none resize-none scrollbar-thumb-zinc-700
                   scrollbar-track-transparent scrollbar-thin"
-          placeholder="Conte com detalhes o que está acontecendo..."
+          placeholder={feedbackType === 'BUG' ? 'Está tendo problemas? Conte para nós com mais detalhes!'
+            : feedbackType === 'IDEIA' ? 'Tem alguma ideia bacana para nos dizer? Conta pra gente!'
+              : 'Conte com detalhes o que está acontecendo para que possamos analisar posteriormente!'
+          }
           onChange={event => setComment(event.target.value)}
         />
 
