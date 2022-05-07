@@ -3,6 +3,8 @@ import React, { createContext, useContext, useState } from 'react';
 interface ContextProps {
   applicationMainColor: string;
   setApplicationMainColor: (color: string) => void;
+  theme: string;
+  setTheme: (theme: string) => void;
 }
 
 interface Props {
@@ -16,11 +18,17 @@ function ColorsProvider({ children }: Props) {
     localStorage.getItem('@Feedget:Color') ?
       String(localStorage.getItem('@Feedget:Color')) : 'brand-500'
   );
+  const [theme, setTheme] = useState(
+    localStorage.getItem('@Feedget:Theme') ?
+      String(localStorage.getItem('@Feedget:Theme')) : 'white'
+  )
 
   return (
     <ColorsContext.Provider value={{
       applicationMainColor,
-      setApplicationMainColor
+      setApplicationMainColor,
+      theme,
+      setTheme
     }}>
       {children}
     </ColorsContext.Provider>

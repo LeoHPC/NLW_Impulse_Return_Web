@@ -7,7 +7,8 @@ interface FeedbackSuccessStepProps {
 
 export function FeedbackSuccessStep({ onFeedbackRestartRequested }: FeedbackSuccessStepProps) {
   const {
-    applicationMainColor
+    applicationMainColor,
+    theme
   } = useColors();
 
   return (
@@ -29,8 +30,9 @@ export function FeedbackSuccessStep({ onFeedbackRestartRequested }: FeedbackSucc
         <button
           type="button"
           onClick={onFeedbackRestartRequested}
-          className={`py-2 px-6 mt-6 bg-zinc-400 dark:bg-zinc-800 rounded-md border-transparent
-                          text-sm text-zinc-800 dark:text-zinc-100 leading-6 hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors
+          className={`py-2 px-6 mt-6 ${theme === 'light' ? 'bg-zinc-300 text-zinc-800 hover:brightness-110' :
+            'bg-zinc-800 text-zinc-100 hover:bg-zinc-700'} 
+                          rounded-md border-transparent text-sm leading-6 transition-colors
                           focus:outline-none focus:ring-2 focus:ring-offset-2
                         focus:ring-offset-zinc-900 focus:ring-${applicationMainColor}`}
         >

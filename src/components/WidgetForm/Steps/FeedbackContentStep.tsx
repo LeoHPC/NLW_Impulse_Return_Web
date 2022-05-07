@@ -26,7 +26,8 @@ export function FeedbackContentStep({
   const feedbackTypeInfo = feedbackTypes[feedbackType];
 
   const {
-    applicationMainColor
+    applicationMainColor,
+    theme
   } = useColors();
 
   async function handleSubmitFeedback(event: FormEvent) {
@@ -50,13 +51,13 @@ export function FeedbackContentStep({
 
         <button
           type="button"
-          className="top-5 left-5 absolute text-zinc-800 dark:text-zinc-400 hover:text-zinc-100"
+          className={`top-5 left-5 absolute ${theme === 'light' ? 'text-zinc-800 hover:text-zinc-600' : 'text-zinc-400 hover:text-zinc-100'}`}
           onClick={onFeedbackRestartRequested}
         >
           <ArrowLeft weight="bold" className="h-4 w-4" />
         </button>
 
-        <span className="text-xl leading-6 flex items-center gap-2 text-zinc-800 dark:text-zinc-200">
+        <span className={`text-xl leading-6 flex items-center gap-2 ${theme === 'light' ? 'text-zinc-800' : 'text-zinc-200'}`}>
           <img
             src={feedbackTypeInfo.image.source}
             alt={feedbackTypeInfo.image.alt}
@@ -73,9 +74,8 @@ export function FeedbackContentStep({
         className="my-4 w-full"
       >
         <textarea
-          className={`min-w-[304px] w-full min-h-[112px] text-sm placeholder-zinc-700 
-                  dark:placeholder-zinc-400 text-zinc-800
-                  dark:text-zinc-100 border-zinc-600 bg-transparent rounded-md 
+          className={`min-w-[304px] w-full min-h-[112px] text-sm ${theme === 'light' ? 'placeholder-zinc-700 text-zinc-800'
+            : 'placeholder-zinc-400 text-zinc-100'} border-zinc-600 bg-transparent rounded-md 
                   focus:border-${applicationMainColor} focus:ring-${applicationMainColor} focus:ring-1 
                   focus:outline-none resize-none scrollbar-thumb-zinc-700
                   scrollbar-track-transparent scrollbar-thin`}

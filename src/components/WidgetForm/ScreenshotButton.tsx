@@ -14,7 +14,8 @@ export function ScreenshotButton({ screenshot, onScreenshotTook }: ScreenshotBut
   const [isTakingScreenshot, setIsTakingScreenshot] = useState(false);
 
   const {
-    applicationMainColor
+    applicationMainColor,
+    theme
   } = useColors();
 
   async function handleTakeScreenshot() {
@@ -49,8 +50,8 @@ export function ScreenshotButton({ screenshot, onScreenshotTook }: ScreenshotBut
     <button
       type="button"
       onClick={handleTakeScreenshot}
-      className={`p-2 bg-zinc-300 dark:bg-zinc-800 rounded-md border-transparent hover:bg-zinc-400 dark:hover:bg-zinc-700
-              transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2
+      className={`p-2 ${theme === 'light' ? 'bg-zinc-300 hover:bg-zinc-400' : 'bg-zinc-800 hover:bg-zinc-700'}
+              rounded-md border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2
               focus:ring-offset-zinc-900 ${applicationMainColor === 'red-700' ? 'focus:ring-red-700' :
           `${applicationMainColor}` === 'brand-500' ? 'focus:ring-brand-500' : `${applicationMainColor}`
             === 'amber-500' ? 'focus:ring-amber-500' : 'focus:ring-blue-500'}  text-zinc-800 dark:text-zinc-100`}

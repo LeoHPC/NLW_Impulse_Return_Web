@@ -4,6 +4,7 @@ import bugImageUrl from '../../assets/bug.svg';
 import ideiaImageUrl from '../../assets/idea.svg';
 import thoughtImageUrl from '../../assets/thought.svg';
 import { useColors } from "../../hooks/ColorsContext";
+import { ColoredButtons } from "../ColoredButtons";
 import { FeedbackContentStep } from "./Steps/FeedbackContentStep";
 import { FeedbackSuccessStep } from "./Steps/FeedbackSuccessStep";
 import { FeedbackTypeStep } from "./Steps/FeedbackTypeStep";
@@ -40,7 +41,7 @@ export function WidgetForm() {
   const [feedbackSent, setFeedbackSent] = useState(false);
 
   const {
-    setApplicationMainColor
+    theme
   } = useColors();
 
   function handleRestartFeedback() {
@@ -49,8 +50,9 @@ export function WidgetForm() {
   }
 
   return (
-    <div className="bg-zinc-200 dark:bg-zinc-900 p-4 relative rounded-2xl mb-4 flex flex-col items-center 
-                    shadow-lg w-[calc(100vw-2rem)] md:w-auto">
+    <div className={`${theme === 'light' ? 'bg-zinc-200' : 'bg-zinc-900'}
+                    p-4 relative rounded-2xl mb-4 flex flex-col items-center 
+                    shadow-lg w-[calc(100vw-2rem)] md:w-auto`}>
 
       {
         feedbackSent ? (
@@ -73,43 +75,12 @@ export function WidgetForm() {
         )
       }
 
-      <footer className="text-xs text-neutral-400 justify-between flex flex-row w-full px-3">
-        <span className="text-zinc-700 dark:text-zinc-200">
+      <footer className="text-xs text-neutral-400 justify-between items-center flex flex-row w-full px-3">
+        <span className={`${theme === 'light' ? 'text-zinc-800' : 'text-zinc-200'}`}>
           Feito por <a className="underline underline-offset-2" href="https://github.com/LeoHPC">@LeoHPC</a>
         </span>
-        <div className="flex gap-1">
-          <button
-            type="button"
-            className="w-4 h-4 rounded-lg bg-red-700 hover:bg-red-600"
-            onClick={() => {
-              setApplicationMainColor('red-700');
-              localStorage.setItem('@Feedget:Color', 'red-700');
-            }}
-          />
-          <button
-            type="button"
-            className="w-4 h-4 rounded-lg bg-brand-500 hover:bg-brand-300"
-            onClick={() => {
-              setApplicationMainColor('brand-500');
-              localStorage.setItem('@Feedget:Color', 'brand-500');
-            }}
-          />
-          <button
-            type="button"
-            className="w-4 h-4 rounded-lg bg-amber-500 hover:bg-amber-500"
-            onClick={() => {
-              setApplicationMainColor('amber-500');
-              localStorage.setItem('@Feedget:Color', 'amber-500');
-            }}
-          />
-          <button
-            type="button"
-            className="w-4 h-4 rounded-lg bg-blue-500 hover:bg-blue-400"
-            onClick={() => {
-              setApplicationMainColor('blue-500');
-              localStorage.setItem('@Feedget:Color', 'blue-500');
-            }}
-          />
+        <div className="flex gap-1 items-center justify-center">
+          <ColoredButtons />
         </div>
       </footer>
     </div>
