@@ -1,9 +1,10 @@
-import { useState } from "react"
-
 import { Widget } from "./components/Widget"
+import { ColorsProvider } from "./hooks/ColorsContext"
 
 export function App() {
   return (
-    <Widget />
+    <ColorsProvider>
+      <Widget />
+    </ColorsProvider>
   )
 }

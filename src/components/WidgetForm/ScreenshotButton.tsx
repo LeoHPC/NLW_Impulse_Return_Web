@@ -2,6 +2,7 @@ import html2canvas from 'html2canvas';
 import { Camera, Trash } from "phosphor-react";
 import { useState } from "react";
 
+import { useColors } from '../../hooks/ColorsContext';
 import { Loading } from "../Loading";
 
 interface ScreenshotButtonProps {
@@ -11,6 +12,10 @@ interface ScreenshotButtonProps {
 
 export function ScreenshotButton({ screenshot, onScreenshotTook }: ScreenshotButtonProps) {
   const [isTakingScreenshot, setIsTakingScreenshot] = useState(false);
+
+  const {
+    applicationMainColor
+  } = useColors();
 
   async function handleTakeScreenshot() {
     setIsTakingScreenshot(true);
@@ -44,9 +49,11 @@ export function ScreenshotButton({ screenshot, onScreenshotTook }: ScreenshotBut
     <button
       type="button"
       onClick={handleTakeScreenshot}
-      className="p-2 bg-zinc-300 dark:bg-zinc-800 rounded-md border-transparent hover:bg-zinc-400 dark:hover:bg-zinc-700
+      className={`p-2 bg-zinc-300 dark:bg-zinc-800 rounded-md border-transparent hover:bg-zinc-400 dark:hover:bg-zinc-700
               transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2
-              focus:ring-offset-zinc-900 focus:ring-brand-500 text-zinc-800 dark:text-zinc-100"
+              focus:ring-offset-zinc-900 ${applicationMainColor === 'red-700' ? 'focus:ring-red-700' :
+          `${applicationMainColor}` === 'brand-500' ? 'focus:ring-brand-500' : `${applicationMainColor}`
+            === 'amber-500' ? 'focus:ring-amber-500' : 'focus:ring-blue-500'}  text-zinc-800 dark:text-zinc-100`}
     >
       {
         isTakingScreenshot ?

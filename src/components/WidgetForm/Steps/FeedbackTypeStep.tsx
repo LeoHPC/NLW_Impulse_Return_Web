@@ -1,4 +1,5 @@
 import { FeedbackType, feedbackTypes } from "..";
+import { useColors } from "../../../hooks/ColorsContext";
 import { CloseButton } from "../../CloseButton";
 
 interface FeedbackTypeStepProps {
@@ -6,6 +7,10 @@ interface FeedbackTypeStepProps {
 }
 
 export function FeedbackTypeStep({ onFeedbackTypeChanged }: FeedbackTypeStepProps) {
+  const {
+    applicationMainColor
+  } = useColors();
+
   return (
     <>
       <header>
@@ -20,9 +25,11 @@ export function FeedbackTypeStep({ onFeedbackTypeChanged }: FeedbackTypeStepProp
             return (
               <button
                 key={key}
-                className="bg-zinc-300 dark:bg-zinc-800 rounded-lg py-5 w-24 flex-1 flex flex-col items-center gap-2 
-                          border-2 border-transparent hover:border-brand-500 focus:border-brand-500 
-                          focus:outline-none"
+                className={`bg-zinc-300 dark:bg-zinc-800 rounded-lg py-5 w-24 flex-1 flex flex-col items-center gap-2 
+                          border-2 border-transparent ${applicationMainColor === 'red-700' ? 'hover:border-red-700 focus:border-red-700' :
+                    `${applicationMainColor}` === 'brand-500' ? 'hover:border-brand-500 focus:border-brand-500' : `${applicationMainColor}`
+                      === 'amber-500' ? 'hover:border-amber-500 focus:border-amber-500' : 'hover:border-blue-500 focus:border-blue-500'}
+                          focus:outline-none`}
                 type="button"
                 onClick={() => onFeedbackTypeChanged(key as FeedbackType)}
               >
