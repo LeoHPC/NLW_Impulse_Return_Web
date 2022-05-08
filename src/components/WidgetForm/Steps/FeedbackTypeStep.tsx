@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { FeedbackType, feedbackTypes } from "..";
 import { useColors } from "../../../hooks/ColorsContext";
 import { CloseButton } from "../../CloseButton";
@@ -12,11 +14,14 @@ export function FeedbackTypeStep({ onFeedbackTypeChanged }: FeedbackTypeStepProp
     theme
   } = useColors();
 
+  const { t } = useTranslation();
+
   return (
     <>
       <header>
-        <span className={`text-xl leading-6 ${theme === 'light' ? 'text-zinc-800' : 'text-zinc-200'}`}>Deixe seu feedback</span>
-
+        <span id="deixe-seu-feedback" className={`text-xl leading-6 ${theme === 'light' ? 'text-zinc-800' : 'text-zinc-200'}`}>
+          {t('Deixe seu feedback')}
+        </span>
         <CloseButton />
       </header>
 
@@ -35,7 +40,9 @@ export function FeedbackTypeStep({ onFeedbackTypeChanged }: FeedbackTypeStepProp
                 onClick={() => onFeedbackTypeChanged(key as FeedbackType)}
               >
                 <img src={value.image.source} alt={value.image.alt} />
-                <span className={`${theme === 'light' ? 'text-zinc-800' : 'text-zinc-200'}`}>{value.title}</span>
+                <span className={`${theme === 'light' ? 'text-zinc-800' : 'text-zinc-200'}`}>
+                  {t(`${value.title}`)}
+                </span>
               </button>
             )
           })

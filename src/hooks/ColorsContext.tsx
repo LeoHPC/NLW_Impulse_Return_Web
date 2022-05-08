@@ -5,6 +5,8 @@ interface ContextProps {
   setApplicationMainColor: (color: string) => void;
   theme: string;
   setTheme: (theme: string) => void;
+  language: string;
+  setLanguage: (language: string) => void;
 }
 
 interface Props {
@@ -22,13 +24,19 @@ function ColorsProvider({ children }: Props) {
     localStorage.getItem('@Feedget:Theme') ?
       String(localStorage.getItem('@Feedget:Theme')) : 'white'
   )
+  const [language, setLanguage] = useState(
+    localStorage.getItem('@Feedget:Language') ?
+      String(localStorage.getItem('@Feedget:Language')) : 'pt'
+  )
 
   return (
     <ColorsContext.Provider value={{
       applicationMainColor,
       setApplicationMainColor,
       theme,
-      setTheme
+      setTheme,
+      language,
+      setLanguage
     }}>
       {children}
     </ColorsContext.Provider>

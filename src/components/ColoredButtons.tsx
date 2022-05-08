@@ -2,15 +2,45 @@ import moonImageUrl from '../assets/moon.svg';
 import sunImageUrl from '../assets/sun.svg';
 import { useColors } from "../hooks/ColorsContext";
 
+import BrazilFlag from '../assets/br.png';
+import USFlag from '../assets/us.png';
+
 export function ColoredButtons() {
   const {
     setApplicationMainColor,
     theme,
-    setTheme
+    setTheme,
+    language,
+    setLanguage
   } = useColors();
 
   return (
     <>
+      {
+        language === 'en' ? (
+          <button
+            type="button"
+            className="w-5 h-5 mr-1"
+            onClick={() => {
+              setLanguage('pt');
+              localStorage.setItem('@Feedget:Language', 'pt');
+            }}
+          >
+            <img src={BrazilFlag} alt="Bandeira do Brasil" />
+          </button>
+        ) : (
+          <button
+            type="button"
+            className="w-5 h-5 mr-1"
+            onClick={() => {
+              setLanguage('en');
+              localStorage.setItem('@Feedget:Language', 'en');
+            }}
+          >
+            <img src={USFlag} alt="Bandeira do Estados Unidos" />
+          </button>
+        )
+      }
       <button
         type="button"
         className="w-4 h-4 rounded-lg bg-red-700 hover:bg-red-600"

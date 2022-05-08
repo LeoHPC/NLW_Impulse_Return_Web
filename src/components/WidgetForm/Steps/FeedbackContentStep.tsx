@@ -1,5 +1,6 @@
 import { ArrowLeft, Camera } from "phosphor-react";
 import { FormEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { FeedbackType, feedbackTypes } from ".."
 import { useColors } from "../../../hooks/ColorsContext";
@@ -29,6 +30,8 @@ export function FeedbackContentStep({
     applicationMainColor,
     theme
   } = useColors();
+
+  const { t } = useTranslation();
 
   async function handleSubmitFeedback(event: FormEvent) {
     setIsSendingFeedback(true);
@@ -63,7 +66,7 @@ export function FeedbackContentStep({
             alt={feedbackTypeInfo.image.alt}
             className="w-6 h-6"
           />
-          {feedbackTypeInfo.title}
+          {t(`${feedbackTypeInfo.title}`)}
         </span>
 
         <CloseButton />
@@ -79,9 +82,9 @@ export function FeedbackContentStep({
                   focus:border-${applicationMainColor} focus:ring-${applicationMainColor} focus:ring-1 
                   focus:outline-none resize-none scrollbar-thumb-zinc-700
                   scrollbar-track-transparent scrollbar-thin`}
-          placeholder={feedbackType === 'BUG' ? 'Está tendo problemas? Conte para nós com mais detalhes!'
-            : feedbackType === 'IDEIA' ? 'Tem alguma ideia bacana para nos dizer? Conta pra gente!'
-              : 'Conte com detalhes o que está acontecendo para que possamos analisar posteriormente!'
+          placeholder={feedbackType === 'BUG' ? t('Está tendo problemas? Conte para nós com mais detalhes!')
+            : feedbackType === 'IDEIA' ? t('Tem alguma ideia bacana para nos dizer? Conta pra gente!')
+              : t('Conte com detalhes o que está acontecendo para que possamos analisar posteriormente!')
           }
           onChange={event => setComment(event.target.value)}
         />
@@ -101,7 +104,7 @@ export function FeedbackContentStep({
                       focus:ring-offset-zinc-900 focus:ring-${applicationMainColor}
                       transition-colors disabled:opacity-50 disabled:brightness-75`}
           >
-            {isSendingFeedback ? <Loading /> : 'Enviar feedback'}
+            {isSendingFeedback ? <Loading /> : t('Enviar feedback')}
           </button>
         </footer>
       </form>

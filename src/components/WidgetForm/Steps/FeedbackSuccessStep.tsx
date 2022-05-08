@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { useColors } from "../../../hooks/ColorsContext";
 import { CloseButton } from "../../CloseButton";
 
@@ -10,6 +11,8 @@ export function FeedbackSuccessStep({ onFeedbackRestartRequested }: FeedbackSucc
     applicationMainColor,
     theme
   } = useColors();
+
+  const { t } = useTranslation();
 
   return (
     <>
@@ -24,7 +27,7 @@ export function FeedbackSuccessStep({ onFeedbackRestartRequested }: FeedbackSucc
         </svg>
 
         <span className={`text-xl mt-2 ${theme === 'light' ? 'text-zinc-800' : 'text-zinc-100'}`}>
-          Agradecemos o feedback!
+          {t('Agradecemos o feedback!')}
         </span>
 
         <button
@@ -36,7 +39,7 @@ export function FeedbackSuccessStep({ onFeedbackRestartRequested }: FeedbackSucc
                           focus:outline-none focus:ring-2 focus:ring-offset-2
                         focus:ring-offset-zinc-900 focus:ring-${applicationMainColor}`}
         >
-          Quero enviar outro!
+          {t('Quero enviar outro!')}
         </button>
       </div>
     </>

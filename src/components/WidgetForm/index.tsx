@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import bugImageUrl from '../../assets/bug.svg';
 import ideiaImageUrl from '../../assets/idea.svg';
@@ -44,6 +45,8 @@ export function WidgetForm() {
     theme
   } = useColors();
 
+  const { t } = useTranslation();
+
   function handleRestartFeedback() {
     setFeedbackSent(false);
     setFeedbackType(null);
@@ -77,7 +80,7 @@ export function WidgetForm() {
 
       <footer className="text-xs text-neutral-400 justify-between items-center flex flex-row w-full px-3">
         <span className={`${theme === 'light' ? 'text-zinc-800' : 'text-zinc-200'}`}>
-          Feito por <a className="underline underline-offset-2" href="https://github.com/LeoHPC">@LeoHPC</a>
+          {t('Feito por')} <a className="underline underline-offset-2" href="https://github.com/LeoHPC">@LeoHPC</a>
         </span>
         <div className="flex gap-1 items-center justify-center">
           <ColoredButtons />
